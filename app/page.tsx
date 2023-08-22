@@ -24,7 +24,7 @@ export default async function Page() {
   const idList: number[] = await result.json();
 
   const storyList: Story[] = [];
-  for (const id of idList.slice(0, 20)) {
+  for (const id of idList.slice(0, NUMBERS_PER_PAGE)) {
     const result2: Response = await fetch(
       `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
     );

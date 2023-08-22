@@ -50,13 +50,13 @@ export default function StoryList({ initialStories, idList }: Props) {
     setLoading(false);
   };
   return (
-    <div className="main-container">
+    <div className="main-container" data-testid="main-container">
       <h1 className="main-title">Top 100 Hacker News</h1>
       <InfiniteScroll
         hasMoreData={hasMoreData}
         isLoading={loading}
         onBottomHit={loadMoreNumbers}
-        loadOnMount={true}
+        loadOnMount={false}
       >
         <div className="story-containers">
           {stories.map((story, i) => {
@@ -65,12 +65,10 @@ export default function StoryList({ initialStories, idList }: Props) {
         </div>
       </InfiniteScroll>
 
-      {stories.length ? (
+      {stories.length && (
         <div className="loader--2">
-          <ClipLoader loading={loading}></ClipLoader>
+          <ClipLoader loading={loading} data-testid="loader"></ClipLoader>
         </div>
-      ) : (
-        <ClipLoader className="loader"></ClipLoader>
       )}
     </div>
   );

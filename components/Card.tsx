@@ -19,7 +19,6 @@ type Story = {
 
 export default function Card({ story, i }: Props) {
   const [storiesPerRow, setStoriesPerRow] = useState<number>();
-
   useEffect(() => {
     if (window.innerWidth > 1503) setStoriesPerRow(4);
     else if (window.innerWidth > 1152) setStoriesPerRow(3);
@@ -30,12 +29,19 @@ export default function Card({ story, i }: Props) {
   if (!storiesPerRow) return <ClipLoader className="loader"></ClipLoader>;
   return (
     <div className={`card-container card-container--${i % storiesPerRow}`}>
-      <a className="story" href={story.url} target="blank">
-        <h2 className="story-title">{story.title}</h2>
-        <div className="author">
-          by <span className="author-name">{story.by}</span>
+      <a className="story" data-testid="story" href={story.url} target="blank">
+        <h2 className="story-title" data-testid="story-title">
+          {story.title}
+        </h2>
+        <div className="author" data-testid="author">
+          by{" "}
+          <span className="author-name" data-testid="author-name">
+            {story.by}
+          </span>
         </div>
-        <div className="score">Score: {story.score}</div>
+        <div className="score" data-testid="score">
+          Score: {story.score}
+        </div>
       </a>
     </div>
   );
