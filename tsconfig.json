@@ -1,4 +1,12 @@
 {
+  // For cypress if use
+
+  // "ts-node": {
+  //   "compilerOptions": {
+  //     "module": "es2015",
+  //     "moduleResolution": "node"
+  //   }
+  // },
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -19,8 +27,11 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/components*": ["components/*"],
+      "@/app": ["app/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

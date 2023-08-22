@@ -47,7 +47,6 @@ export default function StoryList({ initialStories, idList }: Props) {
       storyList.push(story);
     }
     setStories([...stories, ...storyList]);
-    console.log(storyList);
     setLoading(false);
   };
   return (

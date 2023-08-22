@@ -1,6 +1,7 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Card.scss";
+import { ClipLoader } from "react-spinners";
 
 type Props = { story: Story; i: number };
 
@@ -17,13 +18,16 @@ type Story = {
 };
 
 export default function Card({ story, i }: Props) {
-  let storiesPerRow: number;
+  const [storiesPerRow, setStoriesPerRow] = useState<number>();
 
-  if (window.innerWidth > 1503) storiesPerRow = 4;
-  else if (window.innerWidth > 1152) storiesPerRow = 3;
-  else if (window.innerWidth > 800) storiesPerRow = 2;
-  else storiesPerRow = 1;
+  useEffect(() => {
+    if (window.innerWidth > 1503) setStoriesPerRow(4);
+    else if (window.innerWidth > 1152) setStoriesPerRow(3);
+    else if (window.innerWidth > 800) setStoriesPerRow(2);
+    else setStoriesPerRow(1);
+  }, []);
 
+  if (!storiesPerRow) return <ClipLoader className="loader"></ClipLoader>;
   return (
     <div className={`card-container card-container--${i % storiesPerRow}`}>
       <a className="story" href={story.url} target="blank">
