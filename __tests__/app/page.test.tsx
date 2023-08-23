@@ -47,22 +47,18 @@ describe("Main page", () => {
   });
 
   it("renders a story card properly", async () => {
-    const { getByTestId } = render(
-      await Card({
-        story: {
-          by: "string",
-          descendants: 3,
-          id: 2,
-          kids: [1, 2, 3],
-          score: 23,
-          time: 23,
-          title: "string",
-          type: "string",
-          url: "link to a new page",
-        },
-        i: 5,
-      })
-    );
+    const story = {
+      by: "string",
+      descendants: 3,
+      id: 2,
+      kids: [1, 2, 3],
+      score: 23,
+      time: 23,
+      title: "string",
+      type: "string",
+      url: "link to a new page",
+    };
+    const { getByTestId } = render(<Card story={story} i={5} />);
     expect(getByTestId("story")).toBeInTheDocument();
     expect(getByTestId("story-title")).toBeInTheDocument();
     expect(getByTestId("author")).toBeInTheDocument();
